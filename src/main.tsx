@@ -4,9 +4,10 @@ import './index.css';
 
 import Home from './pages/Home.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import About from './pages/About.js';
 
-// Placeholder About component
-const About = () => <div>About Page</div>;
+
+
 
 const router = createBrowserRouter([
   {

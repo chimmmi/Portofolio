@@ -3,17 +3,35 @@ import { IoMdPerson } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
+import { Dock, DockIcon } from "../components/ui/dock";
+import { Link } from "react-router-dom";
 
 function Nav() {
   return (
-    <nav className="flex fixed bg-white gap-7 p-2 z-50 -translate-x-1/2  left-1/2 bottom-4 border border-black rounded-lg shadow-2xl">
-      <GoHomeFill className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
-      <IoMdPerson className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
-      <p className="text-2xl">|</p>
-      <FaLinkedin className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1"  />
-      <FaGithub className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1"  />
-      <FaInstagramSquare className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1"  />
-    </nav>
+    <div className="fixed z-50 top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <Dock direction="middle">
+        <DockIcon>
+          <Link to={'/'}>
+          <GoHomeFill className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
+          </Link>
+        </DockIcon>
+        <DockIcon>
+          <Link to={'/about'}>
+          <IoMdPerson className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
+          </Link>
+        </DockIcon>
+        <p>|</p>
+        <DockIcon>
+          <FaLinkedin className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
+        </DockIcon>
+        <DockIcon>
+          <FaGithub className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
+        </DockIcon>
+        <DockIcon>
+          <FaInstagramSquare className="size-8 cursor-pointer transform transition-transform duration-300 hover:-translate-y-1" />
+        </DockIcon>
+      </Dock>
+    </div>
   );
 }
 

@@ -34,4 +34,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
 

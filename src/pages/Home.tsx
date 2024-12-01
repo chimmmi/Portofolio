@@ -1,5 +1,5 @@
-import BodyContent from "../components/BodyContent";
-import Header from "../components/Header";
+import BodyContent from "../components/home/BodyContent";
+import Header from "../components/home/Header";
 import Nav from "../components/Nav";
 import SkillsIcons from "../components/SkillsIcons";
 

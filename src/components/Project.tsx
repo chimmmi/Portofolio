@@ -1,30 +1,32 @@
-import React from 'react';
-import { BorderBeam } from './ui/border-beam';
+import React from "react";
 
-interface ProjectProps {
+type ProjectProps = {
+  title: string;
   siteSrc: string;
   imgSrc: string;
-  title: string;
-  r: string; 
-}
+  description?: string;
+};
 
-const Project: React.FC<ProjectProps> = ({ siteSrc, imgSrc, title, r }) => {
+const Project: React.FC<ProjectProps> = ({
+  siteSrc,
+  imgSrc,
+  title,
+  description,
+}) => {
   return (
-    <div>
-      <h1 className={`absolute right-[${r}%] text-[3rem] font-light z-10`}>
-        {title} <br />
-        <span className="font-extralight">Project</span>
-      </h1>
-      <div className="cursor-pointer">
-        <a href={siteSrc} target="_blank" rel="noopener noreferrer">
-        
-          <img
-            src={imgSrc}
-            className="w-[50rem] opacity-50 hover:opacity-80 transition-opacity duration-500"
-            alt={`${title} project`}
-          />
-        </a>
-      </div>
+    <div className="flex justify-center gap-12">
+      <a href={siteSrc} target="_blank" rel="noopener noreferrer">
+        <h1 className="text-[3rem] text-center font-bold">{title}</h1>
+        <div>
+          <p className="text-center mt-3 font-light">{description}</p>
+        </div>
+        <hr className="w-[40%] m-auto mt-5 pb-5"/>
+        <img
+          src={imgSrc}
+          className="w-[130vh] opacity-50 hover:opacity-80 transition-opacity duration-500"
+          alt={`${title} project`}
+        />
+      </a>
     </div>
   );
 };

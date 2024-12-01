@@ -8,31 +8,56 @@ interface FormData {
 
 function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
-  const [status, setStatus] = useState<string>('');
+  const [status, setStatus] = useState<string>("");
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setStatus('Message sent successfully!');
-    setFormData({ name: '', email: '', message: '' });
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("Sending....");
+  
+    // Type assertion: event.target as HTMLFormElement
+    const formData = new FormData(event.target as HTMLFormElement);
+  
+    formData.append("access_key", "ffb6e0dc-d804-4913-b63f-ecbf8d2d32a8");
+  
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+  
+    const data = await response.json();
+  
+    if (data.success) {
+      setStatus("Form Submitted Successfully");
+  
+      // Explicit casting of event.target to HTMLFormElement to use reset method
+      (event.target as HTMLFormElement).reset();
+    } else {
+      console.log("Error", data);
+      setStatus(data.message);
+    }
   };
+  
+  
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   return (
     <div className="max-w-md mx-auto mt-32 pb-48 p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6">Contact Me</h2>
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
+
+      <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-light text-white">
             Name
@@ -50,7 +75,10 @@ function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-light text-white">
+          <label
+            htmlFor="email"
+            className="block text-sm font-light text-white"
+          >
             Email
           </label>
           <input
@@ -66,7 +94,10 @@ function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-light text-white">
+          <label
+            htmlFor="message"
+            className="block text-sm font-light text-white"
+          >
             Message
           </label>
           <textarea

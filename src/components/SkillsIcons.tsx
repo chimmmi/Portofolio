@@ -10,7 +10,7 @@ import { SiTypescript } from "react-icons/si";
 
 function SkillsIcons() {
     return (
-        <ul className="flex justify-center mt-20 mb-6 gap-16">
+        <ul className="flex justify-center mt-20 mb-6 gap-16 flex-wrap">
             <li><FaReact className="size-14"/></li>
             <li><RiNextjsFill className="size-14"/></li>
             <li><RiTailwindCssFill className="size-14"/></li>
